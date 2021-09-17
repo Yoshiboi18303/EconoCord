@@ -136,6 +136,15 @@ bot.on('interactionCreate', async (interaction) => {
 	}
 })
 
+statcord.on("autopost-start", () => {
+    console.log(`Statcord autopost on ${client.user.username} has started!`);
+});
+
+statcord.on("post", status => {
+    if (!status) console.log("Successful post");
+    else console.error(status);
+});
+
 client.login(process.env.token)
 
 module.exports = bot

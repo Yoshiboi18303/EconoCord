@@ -11,6 +11,8 @@ module.exports.run = async (bot, cmd, args) => {
   const owner = client.users.fetch("697414293712273408")
   const co_owner = client.users.fetch("242734840829575169")
 
+  console.log(owner, co_owner)
+
   const credits_embed = new MessageEmbed()
     .setColor("RANDOM")
     .setTitle(client.user.username + " Credits")
