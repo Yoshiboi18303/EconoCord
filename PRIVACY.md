@@ -1,4 +1,5 @@
 # EconoCord Privacy Policy
+Are you wondering what we're collecting from you while you use EconoCord? Well here, we're gonna tell you!
 
 --------------------------------------------
 
