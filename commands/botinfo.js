@@ -1,7 +1,8 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, version: djsversion } = require('discord.js');
 const { utc } = require('moment');
 const ms = require('ms');
 const Users = require('../models/User');
+const { version } = require('../package.json');
 
 module.exports.help = {
   name: 'botinfo',
@@ -37,6 +38,22 @@ module.exports.run = async (bot, cmd, args) => {
         .setTitle("Info on " + client.user.username)
         .addFields([
           {
+            name: 'Client Tag',
+            value: `${client.user.tag}`
+          },
+          {
+            name: 'Bot Version',
+            value: `v${version}`
+          },
+          {
+            name: 'Running on `discord.js` version:',
+            value: `v${djsversion}`
+          },
+          {
+            name: 'Node Version',
+            value: `${process.version}`
+          },
+          {
             name: 'Date Created',
             value: `${utc(client.user.createdTimestamp).format("MM/DD/YYYY | HH:MM:SS")}`
           },
@@ -67,7 +84,21 @@ module.exports.run = async (bot, cmd, args) => {
       const partners_embed = new MessageEmbed()
         .setColor("#00FF02")
         .setTitle(client.user.username + " Partners")
-        .setDescription("There are no partners right now... :frowning:\nPlease feel free to DM `Yoshiboi18303#4045` if you want to be the first partner though!")
+        .setDescription("Here are all my partners!")
+        .addFields([
+          {
+            name: 'Aoid',
+            value: '<@882785086066532412>'
+          },
+          {
+            name: 'Owner of Aoid',
+            value: '<@738988218002964581>'
+          },
+          {
+            name: 'Invite Link for Aoid',
+            value: '[Click Me!](https://discord.com/oauth2/authorize?client_id=882785086066532412&scope=bot+applications.commands&permissions=8)'
+          }
+        ])
       cmd.reply({
         embeds: [
           partners_embed
