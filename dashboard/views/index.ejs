@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+	<%- include('includes/head', { title: "Home" }) %>
+</head>
+<div>
+  <header>
+    <h1>EconoCord</h1>
+    <img src="/static/img/econocord.png" alt="Bot Avatar" class="avatar">
+    <h3>The best economy bot </h3>
+    <p class="description">This is EconoCord, the most powerful economy bot on Discord.</p>
+  </header>
+  <body>
+    <br>
+    <h2>Click on any of these buttons to be redirected.</h2>
+    <div class="buttons">
+      <button class="btn">&nbsp;Commands</button>
+      <button class="btn" onclick="location.href='https://discord.com/api/oauth2/authorize?client_id=844248249857474580&scope=applications.commands+bot&permissions=67619840'">Invite</button>
+      <button class="btn" onclick="location.href='https://discord.gg/YJEPnhgV5z'">Support</button>
+			<!-- <br> -->
+			<button class="btn" onclick="location.href='/info'">
+				More Info
+			</button>
+    </div>
+  </body>
+</div>
+</html>

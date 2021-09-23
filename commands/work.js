@@ -10,7 +10,11 @@ var jobs = {
 	3: "Manager",
 	4: "Banker",
 	5: "Lawyer",
-	6: "CEO"
+	6: "CEO",
+	7: "Congressman",
+	8: "President",
+	9: "Dictator",
+	10: "World Leader",
 }
 
 var promotions = {
@@ -19,12 +23,21 @@ var promotions = {
 	3: 60,
 	4: 80,
 	5: 100,
-	6: 140
+	6: 140,
+	7: 200,
+	8: 280,
+	9: 380,
+	10: 500
 }
 
 module.exports.help = {
 	name: "work",
 	description: "Work at your job"
+}
+
+module.exports.config = {
+	cooldown: ms("5m"),
+	message: `It's still not time to work! **DON'T YOU SLEEP?** (work again in %t)`
 }
 
 module.exports.run = async (bot, cmd, args) => {
@@ -36,30 +49,12 @@ module.exports.run = async (bot, cmd, args) => {
 		return cmd.reply(`<@${cmd.user.id}>, You don't have a job. Get one by running \`/start\`.`)
 	}
 
-  /*
-  if(Date.now() < ms('5m')) {
-    timeout_error_embed = new MessageEmbed()
-      .setColor(colors.red)
-      .setTitle("Hold on buddy...")
-      .setDescription("You are still on a timeout right now. Please wait 5 minutes since your last work to go to work again.")
-      .setThumbnail(client.no)
-      .setTimestamp()
-    return cmd.reply(
-      {
-        embeds: [
-          timeout_error_embed
-        ]
-      }
-    )
-  }
-  */
-
 	switch(user.job) {
 		case 1:
 			// console.log(user.timesworked)
 			var times = user.timesworked[cmd.guild.id]+1 || 0
 			
-			if (times == promotions[user.job] && user.job != 1) {
+			if (times == promotions[user.job] && user.job != 6) {
 				user.job += 1;
 				user.save()
 				cmd.channel.send(`You've earned a promotion! New career: **${jobs[user.job]}**`)
@@ -137,6 +132,22 @@ module.exports.run = async (bot, cmd, args) => {
 
 		case 6:
 			rate = 350;
+		break;
+
+		case 7:
+			rate = 400;
+		break;
+
+		case 8:
+			rate = 450;
+			break;
+
+		case 9:
+			rate = 600;
+		break;
+
+		case 10:
+			rate = 1000;
 		break;
   }
   // we take the payout, then multiply the rate divided by 10, it gives special pay boosts for the higher of a career you achieve...

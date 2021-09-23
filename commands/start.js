@@ -14,11 +14,16 @@ module.exports.help = {
   ]
 }
 
+module.exports.config = {
+	cooldown: 0,
+	message: ``
+}
+
 module.exports.run = async (bot, cmd, args) => {
   var client = bot;
   var u = client.users.fetch(cmd.user.id)
+  var user_guild_id = await cmd.guild.id
 
-  if(u.bot) return cmd.reply("Bots can't use this system!")
   var user = await Users.findOne({
     id: cmd.user.id
   })
@@ -29,7 +34,7 @@ module.exports.run = async (bot, cmd, args) => {
 		user.save()
 	}
 
-  if (user.job > 0) {
+  if (user.job > 0 && !user.coins.guilds[cmd.guild.id]) {
     const already_started_embed = new MessageEmbed()
       .setColor("#FF0000")
       .setTitle("Error")
@@ -52,34 +57,25 @@ module.exports.run = async (bot, cmd, args) => {
     .setFooter(`${cmd.user.username} successfully started!`)
 		.setTimestamp()
 
-    // const new_starter_embed = new MessageEmbed()
-    // .setColor("#00FF02")
-    // .setTitle("New User!")
-    // .setThumbnail(client.new_user)
-    // .setDescription(`A new user started using EconoCord!`)
-    // .addFields([
-    //   {
-    //     name: 'User',
-    //     value: cmd.user.username
-    //   },
-    //   {
-    //     name: 'Guild',
-    //     value: cmd.guild.name
-    //   }
-    // ])
+    const em = new MessageEmbed()
+		  .setTitle(`New Player!`)
+			.setDescription(`:clap: ${cmd.member.displayName} has started their journey to the top!`)
+			.setTimestamp()
+			.setColor("GREEN")
 
 		Users.updateOne({ id: cmd.user.id }, { job:1, nickname: args.join(" ") || cmd.user.username })
 		.then(() => {
 			cmd.reply({
       	embeds: [
         	started_embed
-      	]
+      	],
+        ephemeral: true
     	})
-    //   starter_channel.send({
-    //     embeds: [
-    //       new_starter_embed
-    //     ]
-    //   })
+      //  starter_channel.send({
+      //    embeds: [
+      //      new_starter_embed
+      //    ]
+      //  })
 		})
 		.catch(err => {
 			cmd.reply("Something went wrong, please try again later.")

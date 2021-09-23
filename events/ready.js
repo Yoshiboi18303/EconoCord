@@ -3,9 +3,16 @@ var Users = require('../models/User')
 module.exports = async (bot) => {
 	// check for bots in database
 
+	var removed = []
+
 	bot.users.cache.filter(u => u.bot === true).forEach((user,id) => {
-		
+		Users.deleteOne({id})
+		.then(() => {
+			removed.push(id)
+		})
 	})
+
+	console.log(`Removed ${removed.length} bots from the database`)
 
 	bot.guilds.cache.forEach(guild => {
 		bot.users.cache.filter(u => !u.bot).forEach(user => {

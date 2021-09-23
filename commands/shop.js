@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const Users = require('../models/User');
+const Guilds = require('../models/Guild');
 
 module.exports.help = {
   name: 'shop',
@@ -28,6 +29,11 @@ module.exports.help = {
   ]
 }
 
+module.exports.config = {
+	cooldown: ms(`30s`),
+	message: `Goddamn it man, we haven't even restocked yet. Please wait for %s so we can finish the restock.`
+}
+
 module.exports.run = async (bot, cmd, args) => {
   var client = bot;
   var colors = [
@@ -39,6 +45,9 @@ module.exports.run = async (bot, cmd, args) => {
     "#AFE321"
   ]
   var action = args[0];
+
+  const user = await Users.findOne({ id: cmd.user.id })
+  const guild = await Guilds.findOne({ id: cmd.guild.id })
 
   switch(action) {
     case 'look':
@@ -54,9 +63,11 @@ module.exports.run = async (bot, cmd, args) => {
       })
     break;
     case 'buy':
-      cmd.reply("Coming soon!")
+      // console.log(item);
+      return cmd.reply("Coming soon!");
     break;
     case 'sell':
-      cmd.reply("Coming soon!")
+      return cmd.reply("Coming soon!")
+    break;
   }
 }

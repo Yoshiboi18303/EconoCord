@@ -5,6 +5,11 @@ module.exports.help = {
 	description: "Fetches a random meme and sends it in an embed!"
 }
 
+module.exports.config = {
+	cooldown: ms("30s"),
+	message: `You have to wait %t before dropping another dank meme`
+}
+
 module.exports.run = async (bot, cmd, args) => {
 	// console.log(cmd)
 	var fetch = await import('node-fetch');

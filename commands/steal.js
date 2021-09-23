@@ -14,6 +14,11 @@ module.exports.help = {
   ]
 }
 
+module.exports.config = {
+	cooldown: ms("2m"),
+	message: `Give the cops some time to lose your trail. Try another heist in %t.`
+}
+
 module.exports.run = async (bot, cmd, args) => {
   var client = bot;
   var user_to_rob_from = args[0]

@@ -3,6 +3,7 @@ const { utc } = require('moment');
 const ms = require('ms');
 const Users = require('../models/User');
 const { version } = require('../package.json');
+const config = require('../config.json');
 
 module.exports.help = {
   name: 'botinfo',
@@ -27,9 +28,17 @@ module.exports.help = {
   ]
 }
 
+module.exports.config = {
+	cooldown: ms("5s"),
+	message: "Please wait %s to use this command."
+}
+
 module.exports.run = async (bot, cmd, args) => {
   var client = bot;
   var embed_choice = args[0];
+
+  var replaced_website_state = config.bot.website.state.replace("::", "-")
+  var replaced_bot_state = config.bot.state.replace("::", "-")
 
   switch(embed_choice) {
     case 'client':
@@ -39,39 +48,63 @@ module.exports.run = async (bot, cmd, args) => {
         .addFields([
           {
             name: 'Client Tag',
-            value: `${client.user.tag}`
+            value: `${client.user.tag}`,
+            inline: true
           },
           {
             name: 'Bot Version',
-            value: `v${version}`
+            value: `v${version}`,
+            inline: true
+          },
+          {
+            name: 'Bot State',
+            value: `${replaced_bot_state}`,
+            inline: true
           },
           {
             name: 'Running on `discord.js` version:',
-            value: `v${djsversion}`
+            value: `v${djsversion}`,
+            inline: true
           },
           {
-            name: 'Node Version',
-            value: `${process.version}`
+            name: 'NodeJS Version',
+            value: `${process.version}`,
+            inline: true
           },
           {
             name: 'Date Created',
-            value: `${utc(client.user.createdTimestamp).format("MM/DD/YYYY | HH:MM:SS")}`
+            value: `${utc(client.user.createdTimestamp).format("MM/DD/YYYY | HH:MM:SS")}`,
+            inline: true
           },
           {
             name: 'Time Away from Creation',
-            value: `${utc(client.user.createdTimestamp).fromNow()}`
+            value: `${utc(client.user.createdTimestamp).fromNow()}`,
+            inline: true
           },
           {
             name: 'Guild Count',
-            value: `${client.guilds.cache.size}`
+            value: `${client.guilds.cache.size}`,
+            inline: true
           },
           {
             name: 'User Count',
-            value: `${client.users.cache.size}`
+            value: `${client.users.cache.size}`,
+            inline: true
           },
           {
             name: 'Document Count',
-            value: `${await Users.countDocuments()}`
+            value: `${await Users.countDocuments()}`,
+            inline: true
+          },
+          {
+            name: 'Website Origin',
+            value: `[Go to](https://${config.bot.website.origin})`,
+            inline: true
+          },
+          {
+            name: 'Website State',
+            value: `${replaced_website_state}`,
+            inline: true
           }
         ])
       cmd.reply({

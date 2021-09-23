@@ -36,25 +36,23 @@ module.exports.help = {
 	permissions: perms
 }
 
-module.exports.run = async (bot, cmd, args) => {
+module.exports.config = {
+	cooldown: 0, // since only devs can use i figured theres no spam risk
+	message: "Please wait %s to use this command."
+}
+
+module.exports.run = (bot, cmd, args) => {
   var cclient = bot
   var code = args.join(" ")
-  let bad_item;
   if (!bot.admins.includes(cmd.user.id)) return cmd.reply("Not an owner")
 
   var secrets = [
-    cclient.token
+    cclient.token,
+		process.env.MONGO_CONNECTION_STRING,
+    process.env.token
   ]
-
-  for(const secret in secrets) {
-    // console.log(secret)
-    bad_item = secret
-  }
   
 	var result = new Promise((resolve, reject) => {
-    // if(code.includes(bad_item)) {
-    //   return "[ REDACTED ]"
-    // }
 		resolve(eval(args.join(" ")));
 	})
 
@@ -62,10 +60,28 @@ module.exports.run = async (bot, cmd, args) => {
 	.then(output => {
 		if (typeof output !== "string") output = util.inspect(output, {depth:0});
 
+		for (const term of secrets) {
+			if (output.includes(term)) output = output.replace(term, '[SECRET]')
+		}
+
+		if (output.length > 2000) {
+
+			var buffer = Buffer.from(output);
+
+			var attachment = new MessageAttachment(buffer, "output.txt")
+			output = "Output is too long to show on Discord, so here's a file."
+
+			return cmd.reply({ content: output, files: [attachment] })
+		}
+
 		cmd.reply("```js\n"+output+"```")
 	})
 	.catch(output => {
 		if (typeof output !== "string") output = util.inspect(output, {depth:0});
+
+		for (const term of secrets) {
+			if (output.includes(term)) output = output.replace(term, '[SECRET]')
+		}
 
 		cmd.reply("```js\n"+output+"```")
 	})

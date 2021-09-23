@@ -14,6 +14,11 @@ module.exports.help = {
   ]
 }
 
+module.exports.config = {
+	cooldown: ms(`10s`),
+	message: `Wow, someone's self-important.`
+}
+
 module.exports.run = async (bot, cmd, args) => {
   // cmd.reply("Coming soon!")
 	var user = args[0]

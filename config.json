@@ -1,0 +1,12 @@
+{
+  "bot": {
+    "website": {
+      "origin": "EconoCord.fhgdev.repl.co",
+      "state": "1 :: Development"
+    },
+    "state": "2 :: Pre-Alpha",
+    "prefix": "/",
+    "slash_only": true,
+    "support": "https://discord.gg/YJEPnhgV5z"
+  }
+}

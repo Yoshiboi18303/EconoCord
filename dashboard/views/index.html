@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EconoCord</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Knewave&display=swap" rel="stylesheet">
+	<link rel='icon' href="/static/img/econocord.png">
+</head>
+<div>
+  <header>
+    <h1>EconoCord</h1>
+    <img src="/static/img/econocord.png" alt="Bot Avatar" class="avatar">
+    <h3>The best economy bot </h3>
+    <p class="description">This is EconoCord, the most powerful Discord Economy bot on Discord.</p>
+  </header>
+  <body>
+    <br>
+    <h2>Click on any of these buttons to be redirected.</h2>
+    <div class="buttons">
+      <button class="btn">&nbsp;Commands</button>
+      <button class="btn" onclick="location.href='https://discord.com/api/oauth2/authorize?client_id=844248249857474580&scope=applications.commands+bot&permissions=67619840'">Invite</button>
+      <button class="btn" onclick="location.href='https://discord.gg/YJEPnhgV5z'">Support</button>
+			<!-- <br> -->
+			<button class="btn" onclick="location.href='/info'">
+				More Info
+			</button>
+    </div>
+  </body>
+</div>
+
+<style>
+  .btn {
+    background-color: #2C2F33;
+    color: #1AA415;
+    font-size: 15px;
+    transition-duration: 0.5s;
+    border: 2px solid #4CAF25;
+    border-radius: 8px;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+
+  .buttons {
+    text-align: center;
+  }
+
+  .btn:hover {
+    background-color: #4CAF25;
+    color: white;
+    cursor: pointer;
+  }
+
+  h2 {
+    font-size: 145%;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #7289DA;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: 'Fredoka One';
+    text-align: center;
+    font-size: 300%;
+    color: #00AEFF;
+  }
+
+  .description {
+    color: rgb(180, 180, 255);
+    text-align: center;
+    font-family: 'Fredoka One'
+  }
+
+  .avatar {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid #4CAF50;
+    border-radius: 100%;
+    width: 20%;
+    height: 20%;
+    -webkit-transform: -webkit-transform .8s ease-in-out;
+    transition: transform .8s ease-in-out;
+  }
+
+  .avatar:hover {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+
+  p,
+  span {
+    color: #4CAF25;
+  }
+
+  body {
+    background-color: #2C2F33;
+  }
+
+  h3 {
+    color: #7289DA;
+    font-family: 'Knewave';
+    text-align: center;
+    font-size: 150%;
+  }
+
+  hr {
+    border-color: #4CAF35;
+  }
+</style>
+</html>

@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const Users = require('../models/User');
+const StockMarket = require('../stock');
 
 module.exports.help = {
   name: 'stocks',
@@ -21,11 +22,16 @@ module.exports.help = {
         },
         {
           name: 'view',
-          value: 'look'
+          value: 'view'
         }
       ]
     }
   ]
+}
+
+module.exports.config = {
+	cooldown: ms("30s"),
+	message: `The stock market needs some time to process your awesomeness. Try going back again in %s.`
 }
 
 module.exports.run = async (bot, cmd, args) => {
@@ -38,7 +44,7 @@ module.exports.run = async (bot, cmd, args) => {
   // console.log(action)
 
   switch(action) {
-    case 'look':
+    case 'view':
       const embed = new MessageEmbed()
         .setColor("BLURPLE")
         .setTitle("Stocks!")

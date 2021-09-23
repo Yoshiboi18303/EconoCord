@@ -5,6 +5,11 @@ module.exports.help = {
   description: 'Restarts the bot!'
 }
 
+module.exports.config = {
+	cooldown: 0,
+	message: ``
+}
+
 module.exports.run = async (bot, cmd, args) => {
 	if (!bot.admins.includes(cmd.user.id)) return cmd.reply(`Not an owner`)
 

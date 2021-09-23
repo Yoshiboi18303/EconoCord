@@ -32,7 +32,7 @@ Your user ID on Discord, the current guild ID, and your current stats on your fu
 
 --------------------------------------------
 
-4) Your data is fully secured behind a MongoDB Server, only the developers can see your data!
+4) Your data is fully secured in a remote database, so only the developers can see it.
 
 --------------------------------------------
 
@@ -40,8 +40,8 @@ Your user ID on Discord, the current guild ID, and your current stats on your fu
 
 --------------------------------------------
 
-6) You can contact the Developers via the [Support Server](https://discord.gg/bUHg5SQMSm) or by DMing [Yoshiboi18303#4045](https://discord.com/users/697414293712273408) or [FHGDev#9997](https://discord.com/users/242734840829575169) on Discord.
+6) You can contact the Developers via the [Support Server](https://discord.gg/bUHg5SQMSm) or by DMing [Yoshiboi18303#4045](https://discord.com/users/697414293712273408) or [FHGDev#7733](https://discord.com/users/482326304381730826) on Discord.
 
 --------------------------------------------
 
-7) Please DM [Yoshiboi18303#4045](https://discord.com/users/697414293712273408) or [FHGDev#9997](https://discord.com/users/242734840829575169) to have your data deleted. Please note that even after your data is deleted, your continual use of the bot will replace the already deleted data. You can specifically request that the bot *not* store your data by DMing either developer above.
+7) Please DM [Yoshiboi18303#4045](https://discord.com/users/697414293712273408) or [FHGDev#7733](https://discord.com/users/482326304381730826) to have your data deleted. Please note that even after your data is deleted, your continual use of the bot will replace the already deleted data. You can specifically request that the bot *not* store your data by DMing either developer above.

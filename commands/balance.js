@@ -14,6 +14,11 @@ module.exports.help = {
   ]
 }
 
+module.exports.config = {
+	cooldown: require('ms')("30s"),
+	message: `You just checked your balance. (Check again in %t)`
+}
+
 module.exports.run = async (bot, cmd, args) => {
   var client = bot;
   var user_to_use = args[0];
@@ -24,13 +29,13 @@ module.exports.run = async (bot, cmd, args) => {
 
 	var u = await bot.users.fetch(user_to_use)
 
-  if(u.bot) {
-    return cmd.reply("This user is a bot, which can't be used in the Economy System!")
-  }
+  if(u.bot) return cmd.reply("This user is a bot, which can't be used in the Economy System!")
 
   var user = await Users.findOne({ // you have to await this
     id: user_to_use
   })
+
+  if(user == null) return cmd.reply("This user doesn't have an account yet!")
 
 	if (!user) {
 		user = new Users({
@@ -52,7 +57,7 @@ module.exports.run = async (bot, cmd, args) => {
 
   const balance_embed = new MessageEmbed()
     .setColor("RANDOM")
-    .setTitle(u.username + "'s Balance")
+    .setTitle(user.nickname + "'s Balance")
     .addFields([{
       name: 'Coins',
       value: `**${coins}**`

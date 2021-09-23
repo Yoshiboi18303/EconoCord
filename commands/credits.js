@@ -5,6 +5,11 @@ module.exports.help = {
   description: 'Shows the credits of who made EconoCord in an embed!'
 }
 
+module.exports.config = {
+	cooldown: ms("5s"),
+	message: "Please wait %s to use this command."
+}
+
 module.exports.run = async (bot, cmd, args) => {
   var client = bot;
 

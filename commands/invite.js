@@ -5,6 +5,11 @@ module.exports.help = {
   description: 'Run this to invite EconoCord to your server!'
 }
 
+module.exports.config = {
+	cooldown: 0,
+	message: ``
+}
+
 module.exports.run = (bot, cmd, args) => {
   var client = bot;
 
